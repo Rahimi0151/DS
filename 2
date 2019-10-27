@@ -1,0 +1,11 @@
+SEARCH( L : LIST; x : ElementType )
+{
+    var p : Position;
+    p = FIRST(L);
+    while p ≠ NULL do
+    {
+        if RETRIEVE(L, p) == x:
+            p = NEXT(L, p);
+            DELETE(L, PREV(L, p))
+    }
+}

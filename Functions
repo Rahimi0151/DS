@@ -1,0 +1,9 @@
+CREATE( ref L : LIST ); 
+EMPTY( L : LIST ) : boolean; 
+MAKENULL( ref L : LIST ); 
+FIRST( L : LIST ) : Position; 
+NEXT( L : LIST; p : Position ) : Position; 
+PREV( L : LIST; p : Position ) : Position; 
+INSERT(ref L : LIST; p : Position; x: ElementType); 
+DELETE( ref L : LIST; ref p : Position ); 
+RETRIEVE( L : LIST; p : Position ) : ElementType; 

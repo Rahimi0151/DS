@@ -1,0 +1,32 @@
+RecursiveReverse (L: list)
+{
+    if L == NULL:
+        return
+    var p,q : position
+    p = RecursiveReverse(L^.next)
+    q = p
+    while p^.next != NULL:
+        p = p^.next
+    p^.next = L
+    return q
+}
+
+Reverse (L: list):
+{
+    if L == NULL:
+        return
+    if L^.next == NULL:
+        return
+    var p,q : position
+    p = L^.next
+    q = p^.next
+    while p != NULL:
+    {
+        p^.next = L
+        L = p
+        p = q
+        if  p != NULL:
+            q = q^.next
+    }
+    return q
+}
