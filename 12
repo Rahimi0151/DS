@@ -1,0 +1,21 @@
+ INSERT(ref L: LIST; p: Position; x: ElementType)
+ {
+     var q : ^CellType;
+     new(q);
+     q^.Data = x; 
+     if p ≠ NULL then
+     {
+        q^.Next = p^.Next;
+        q^.Prev = p;
+        if p^.Next ≠ NULL then
+        p^.Next^.Prev = q;
+        p^.Next = q;
+    }
+    else
+    {
+        q^.Next = L;
+        L^.Prev = q;
+        q^.Prev = NULL;
+        L = q;
+    }
+} 

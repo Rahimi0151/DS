@@ -4,6 +4,6 @@ RecursiveSearch (L: list, X: ElementType)
         return "ERROR 404, not found" :)
     if RETRIEVE(L, FIRTS(L) == X):
         return FIRST(L)
-    DELETE(L, FIRST(L));
+    L: NEXT(L, FIRST(L))
     return RecursiveSearch(L, X)
 }
