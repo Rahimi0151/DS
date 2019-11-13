@@ -17,5 +17,68 @@
         L^.Prev = q;
         q^.Prev = NULL;
         L = q;
+        L.nli = L
     }
 } 
+
+SEARCH(ref L: list; x: ElementType): Position
+{
+    var p : Position
+    p = FIRST(L);
+
+    while p^.Next != nil:
+    {
+        if L^.Data == x then
+            return p;
+        p = Next(L , p);
+    }
+    return ERROR('not found')
+}
+ 
+ 
+INSERT(ref L: LIST; p: Position; x: ElementType)
+{
+    var q : ^CellType;
+    new(q);
+    q^.Data = x;
+    if p ≠ nil then
+    {
+        q^.Next = p^.Next;
+        q^.Prev = p;
+        if p^.Next ≠ nil then
+            p^.Next^.Prev = q;
+        p^.Next = q;
+    }
+    else
+    {
+        q^.Next = L;
+        L^.Prev = q;
+        q^.Prev = nil;
+        L = q;
+    }
+}   
+  
+
+
+
+
+
+DELETE( ref L : LIST; ref p : Position )
+{
+    var q : Position;
+    q = p^.Next;
+    if p ≠ L then
+    {
+        p^.Prev^.Next = p^.Next;
+        if p^.Next ≠ nil then
+            p^.Next^.Prev = p^.Prev;
+    }
+    else
+    {
+        L = L^.Next;
+        L^.Prev = nil;
+    }
+    dispose(p);
+    p = q;
+} 
+  

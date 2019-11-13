@@ -1,0 +1,13 @@
+Count(L: list): Integer
+{
+    var counter : Integer
+    counter = 0
+    if space[p] == 0:
+        return counter
+    while space[p].next != 0 do:
+    {
+        p = space[p].next;
+        counter ++
+    }
+    return counter
+}
