@@ -1,0 +1,27 @@
+Swap(ref L: list, ref p1,p2: Position)
+{
+    var tempData: ElementType;
+    var tempNext, tempPrev: Integer;
+    tempData = space[p1].data;
+    tempNext = space[p1].next;
+    tempPrev = space[p1].prev;
+    space[p1].data = space[p2].data;
+    space[p1].next = space[p2].next;
+    space[p1].prev = space[p2].prev;
+    space[p2].data = tempData;
+    space[p2].next = tempNext;
+    space[p2].prev = tempPrev;
+}
+
+Sort(ref L: list)
+{
+    var p : Position
+    p = List
+    q = 1
+    while space[p].next != 0 do:
+    {
+        Swap(L,p,q)
+        p = space[q].next
+        q++
+    }
+}
