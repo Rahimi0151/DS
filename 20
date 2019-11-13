@@ -1,0 +1,33 @@
+Delete(ref L: list , ref p: position)
+{
+    var q : position
+    q = L 
+    if q == Null then
+        return('Not found')
+    while q^.next ! L do:
+    {
+        q = q^.next
+        if q^.Data == x then
+            return q
+    }
+    return 'Not found'
+}
+
+DELETE( ref L : LIST; ref p : Position )
+{
+    var q : Position;
+    q = L;
+    while q^.next != p do:
+        q = a^.next;
+    if p == L then:
+    {
+        q^.Prev = L^.Next;
+        dispose(L)
+        L = q;
+    }
+    else
+    {
+        q^.next = p^.Next;
+        dispose(L);
+    }
+}

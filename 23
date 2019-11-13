@@ -1,0 +1,20 @@
+Depth(ref L: List): Integer
+{
+    if L == Null then
+        return 0
+    var depth, max_depth :Integer
+    depth = -1;
+    max_depth = -1;
+    var q : position;
+    q = L
+    while q^.next != Null do:
+    {
+        if q^.Tag == False then
+        {
+            depth = Depth(q)
+            max_depth = max(max_depth,depth)
+        }
+        q = q^.next
+    }
+    return max_depth+1
+}

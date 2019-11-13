@@ -1,0 +1,14 @@
+Search(L: list , x: ElementType): CellType
+{
+    var q : CellType;
+    q = L 
+    if q == Null then
+        return('Not found')
+    while q^.next ! L do:
+    {
+        q = q^.next
+        if q^.Data == x then
+            return q
+    }
+    return 'Not found'
+}
