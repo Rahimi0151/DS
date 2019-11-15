@@ -1,0 +1,56 @@
+NOTE:
+This design, does not support Circular Queue; because of that, Q.Front will always remain 1
+
+CREATE(ref Q : QUEUE)
+{
+    Q.Rear = 1;
+}
+
+MAKENULL(ref Q : QUEUE)
+{
+    Q.Rear = 1;
+}
+
+EMPTY(Q : QUEUE) : boolean
+{
+    if Q.Rear == 1 then
+        return TRUE;
+    else
+        return FALSE;
+}
+
+ADD-FRONT(ref DQ: DEQUEUE; x : ElementType);
+{
+    if Q.Rear == MAX then
+        Error( “Overflow” );
+    for i from Q.Rear downto 1 do:
+        Q.Elements[i+1] = Q.Elements[i];
+    Elements[1] = x;
+
+}
+ADD-REAR(ref DQ: DEQUEUE; x : ElementType);
+{
+    if Q.Rear == MAX then
+        Error( “Overflow” );
+    Q.Elements[Q.Rear] = x;
+    Q.Rear ++;
+} 
+
+REMOVE-FRONT(ref DQ: DEQUEUE ): ElementType;
+{
+    if Q.Rear == MAX then
+        Error( “Overflow” );
+    temp = Q.Elements[1]
+    for i from 1 to Q.Rear:
+        Q.Elements[i] = Q.Elements[i+1];
+    return temp
+}
+
+REMOVE-REAR(ref DQ: DEQUEUE ): ElementType;
+{
+    if EMPTY(Q) then
+        Error( “Underflow” );
+    Q.Rear --;
+    return Q.Elements[Q.Rear + 1]; 
+}
+  

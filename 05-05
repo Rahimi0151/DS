@@ -1,0 +1,54 @@
+CREATE(ref Q : QUEUE)
+{
+    Q.Front = 1;
+    Q.Rear = 1;
+    Q.hasRoom = True
+}
+
+SIZE(Q : QUEUE) : integer
+{
+    return (MAX – Q.Front + Q.Rear) mod MAX;
+} 
+
+EMPTY(Q : QUEUE) : boolean
+{
+    if Q.Front == Q.Rear then
+        return TRUE;
+    else
+        return FALSE;
+}
+
+FULL(Q : QUEUE) : boolean
+{
+    if (MAX – Q.Front + Q.Rear) mod MAX == MAX then
+        return TRUE
+    else
+        return FALSE
+}
+
+ENQUEUE(ref Q : QUEUE; x : ElementType)
+{
+    if Q.hasRoom == FALSE then
+        Error( “Overflow” );
+    Q.Elements[Q.Rear + 1 mod MAX] = x;
+    Q.Rear = Q.Rear + 1 mod MAX;
+    Q.hasRoom == FULL(Q)
+}
+
+DEQUEUE(ref Q : QUEUE) : ElementType
+{
+    if EMPTY(Q) then
+    Error( “Underflow” );
+    x = Q.Elements[Q.Front];
+    Q.Front = ( Q.Front mod MAX ) + 1;
+    Q.hasRoom = FULL(Q)
+    return x;
+}
+
+MAKENULL(ref Q : QUEUE)
+{
+    Q.Front = 1;
+    Q.Rear = 1;
+    Q.hasRoom = True
+} 
+  
