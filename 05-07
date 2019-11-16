@@ -1,0 +1,97 @@
+NOTE:
+    - : Empty Space
+    x : Some Data
+
+O(1)
+CREATE(ref L: List, Max: Integer)
+{
+    L.Max = Max
+    L.Data = Array[Max]
+    L.Front = 1
+    L.Rear = 1
+}
+
+O(1)
+SIZE (ref L : List)
+{
+    if L.Rear > L.Front then
+        return L.Rear - L.Front
+    else
+        return L.Max - (L.Front - L.Rear)
+}
+
+O(n)
+DELETE(ref L: List, k: Position)
+{
+    if L.Rear > L.Front then            [-,-,-,-,k,-,-,-,Q.Front,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,Q.Rear,-,-,-,-,-,-]
+    {
+        if k > L.Rear then:
+            ERROR("Unvalid Index!")
+        for i from k+1 to Q.Rear do     [-,-,-,-,-,-,-,-,Q.Front,x,x,x,x,x,x,x,x,x,x,x,x,x, k ,x,x,x,x,x,x,x,x,Q.Rear,-,-,-,-,-,-]
+            Q.Data[i-1] = Q.Data[i]
+        Q.Rear--
+    }
+    if L.Front > L.Rear then
+    {
+        if L.Front < k < L.Rear then:   [x,x,x,x,x,x,x,x,x,x,x,x,Q.Rear,-,-,-,-,-,k,-,-,-,-,-,-,-,Q.Front,x,x,x,x,x,x,x,x,x,x,x,x]
+            ERROR("Invalid Index!")
+        if k < L.Rear then              [x,x,x,x, k ,x,x,x,x,x,x,x,Q.Rear,-,-,-,-,-,-,-,-,-,-,-,-,Q.Front,x,x,x,x,x,x,x,x,x,x,x,x]
+            for i from k+1 to Q.Rear do
+                Q.Data[i-1] = Q.Data[i]
+        if k > L.Fron then              [x,x,x,x,x,x,x,x,x,x,x,x,Q.Rear,-,-,-,-,-,-,-,-,-,-,-,-,Q.Front,x,x,x,x,x, k ,x,x,x,x,x,x]
+            {
+                for i from k+1 to Q.Max do
+                    Q.Data[i-1] = Q.Data[i]
+                Q.Data[Max] = Q.Data[1]
+                for i from 2 to Q.Rear do
+                    Q.Data[i-1] = Q.Data[i]
+            }
+        if Q.Rear == 1 then
+            Q.Rear == Q.Max
+        else
+            Q.Rear --
+    }
+}
+
+O(n)
+INSERT(ref L: List, k: Position, a: ElementType)
+{
+    if ((L.Front - L.Rear) Mod L.Max) == 1 then [x,x,x,x,x,x,x,x,x,x,x,x,Q.Rear,Q.Front,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x]
+        ERROR("OverFlow")
+
+    if L.Rear > L.Front then                    [-,-,-,-,k,-,-,-,Q.Front,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,Q.Rear,-,-,-,-,-,-]
+    {
+        if k > L.Rear then:
+            ERROR("Unvalid Index!")
+        for i from Q.Rear downto k do           [-,-,-,-,-,-,-,-,Q.Front,x,x,x,x,x,x,x,x,x,x,x,x,x, k ,x,x,x,x,x,x,x,x,Q.Rear,-,-,-,-,-,-]
+            Q.Data[i+1] = Q.Data[i]
+            Q.Data[k] = a
+        Q.Rear++
+    }
+    if L.Front > L.Rear then
+    {
+        if L.Front < k < L.Rear then:           [x,x,x,x,x,x,x,x,x,x,x,x,Q.Rear,-,-,-,-,-,k,-,-,-,-,-,-,-,Q.Front,x,x,x,x,x,x,x,x,x,x,x,x]
+            ERROR("Invalid Index!")
+        if k < L.Rear then                      [x,x,x,x, k ,x,x,x,x,x,x,x,Q.Rear,-,-,-,-,-,-,-,-,-,-,-,-,Q.Front,x,x,x,x,x,x,x,x,x,x,x,x]
+            for i from Q.Rear downto k do
+                Q.Data[i+1] = Q.Data[i]
+                Q.Data[k] = a
+        if k > L.Front then                     [x,x,x,x,x,x,x,x,x,x,x,x,Q.Rear,-,-,-,-,-,-,-,-,-,-,-,-,Q.Front,x,x,x,x,x, k ,x,x,x,x,x,x]
+            {
+                for i from Q.Rear downto 1 do
+                    Q.Data[i+1] = Q.Data[i]
+                Q.Data[1] = Q.Data[Q.Max]
+                for i from Q.Max downto k do
+                    Q.Data[i+1] = Q.Data[i]
+                Q.Data[k] = a
+            }
+        if Q.Rear == Q.Max then
+            Q.Rear == 1
+        else
+            Q.Rear ++
+    }
+}
+
+
+
+
