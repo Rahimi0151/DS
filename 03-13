@@ -1,0 +1,6 @@
+Worst Case: we have 200*3 non-zero elements
+
+Normal Matrix: 200*200*4 = 160000
+Sparse Matrix: 200*3*4 = 4800
+
+160000-4800 = 155200

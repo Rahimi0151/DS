@@ -1,0 +1,6 @@
+ADD(A,B: ComplexNumbers): ComplexNumbers
+SUBTRACT(A,B: ComplexNumbers): ComplexNumbers
+MULTIPLY(A,B: ComplexNumbers): ComplexNumbers
+ADDDIVIDE(A,B: ComplexNumbers): ComplexNumbers
+REAL(A: ComplexNumbers): Float
+IMAGINE(A: ComplexNumbers): Float

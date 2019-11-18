@@ -1,0 +1,39 @@
+O(A.Length)
+FETCH(A: Sparse, r,c: Integer): ElementType
+{
+    for i from 1 to A.Length do
+    {
+        if A.Data[i][1] == r then
+        {
+            var j: Integer
+            while A.Data[j][1] == r do
+            {
+                if A.Data[j][3] == c then
+                    return A.Data[j][3]
+                j++
+            }
+            break
+        }
+    }
+    return NULL
+}
+
+O(A.Length)
+CHANGE-ELEMENT(A: Sparse, r,c: Integer, x: ElementType):
+{
+    for i from 1 to A.Length do
+    {
+        if A.Data[i][1] == r then
+        {
+            var j: Integer
+            while A.Data[j][1] == r do
+            {
+                if A.Data[j][3] == c then
+                    A.Data[j][3] = x
+                j++
+            }
+            break
+        }
+    }
+    return NULL
+}
