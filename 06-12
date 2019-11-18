@@ -1,0 +1,39 @@
+A: Using a Stack
+
+MOVE(ref S1,S2: Stack)
+{
+    var S3: Stack
+    while S1.EMPTY() == False do
+        S3.PUSH(S1.POP())
+    while S3.EMPTY() == False do
+        S2.PUSH(S3.POP())
+}
+
+B: Using some Variables
+
+MOVE(ref S1,S2: Stack)
+{
+    var Temp: ElementType
+    var Remaining :Integer
+
+    Remaining = 0
+    
+    while Remaining != 0 do
+    {
+        while S1.EMPTY() == False do
+        {
+            S2.PUSH(S1.POP)
+            Remaining++
+        }
+        
+        temp = S2.POP()
+
+        while Remaining != 0 do
+        {
+            S1.PUSH(S2.POP())
+            Remaining--
+        }
+
+        S2.PUSH(Temp)
+    }
+}

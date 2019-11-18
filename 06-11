@@ -33,6 +33,7 @@ SORT(ref S: Stack)
         while EMPTY(S1) == False do
         {
             S.PUSH(S1.POP())
+            Remaining++
         }
     }
 
