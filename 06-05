@@ -1,0 +1,39 @@
+CREATE(ref S: Stack, Max: Integer)
+{
+    S.Max = Max
+    S.Top1 = 1
+    S.Top2 = S.Max
+    S.Data = Array[Max]
+}
+
+PUSH1(ref S: Stack, x: ElementType)
+{
+    if s.Top1 == S.Top2 then
+        ERROR("Overflow")
+    s.Data[S.Top1] = x
+    S.Top1++
+}
+
+PUSH2(ref S: Stack, x: ElementType)
+{
+    if s.Top1 == S.Top2 then
+        ERROR("Overflow")
+    s.Data[S.Top2] = x
+    S.Top2--
+}
+
+POP1(ref S: Stack): ElementType
+{
+    if S.Top1 == 1 then
+        ERROR("Underflow")
+    S.Top1--
+    return s.Data[S.Top1 + 1]
+}
+
+POP2(ref S: Stack): ElementType
+{
+    if S.Top2 == S.Max then
+        ERROR("Underflow")
+    S.Top2++
+    return s.Data[S.Top2 - 1]
+}

@@ -1,0 +1,41 @@
+CREATE(ref SQ: StackQueue, Max: Integer)
+{
+    SQ.Max = Max
+    SQ.Top = 1
+    SQ.Front = SQ.Max
+    SQ.Data = Array[Max]
+}
+
+PUSH(ref SQ: StackQueue, x: ElementType)
+{
+    if SQ.Top == SQ.Front then
+        ERROR("Overflow")
+    SQ.Data[SQ.Top] = x
+    SQ.Top++
+}
+
+ENQUEUE(ref SQ: StackQueue, x: ElementType)
+{
+    if SQ.Top == Q.Front then
+        ERROR("Overflow")
+    for i from SQ.Front to SQ.Max do
+        SQ.Data[i-1] = SQ.Data[i]
+    SQ.Data[SQ>Max] = x
+    SQ.Front--
+}
+
+POP(ref SQ: StackQueue): ElementType
+{
+    if SQ.Top == 1 then
+        ERROR("Underflow")
+    SQ.Top--
+    return SQ.Data[SQ.Top + 1]
+}
+
+POP2(ref SQ: StackQueue): ElementType
+{
+    if SQ.Front == SQ.Max then
+        ERROR("Underflow")
+    SQ.Front++
+    return SQ.Data[SQ.Front - 1]
+}

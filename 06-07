@@ -1,0 +1,13 @@
+ENQUEUE(ref Q: Queue, x: ElementType)
+{
+    while EMPTY(S1) == False do
+        S2.PUSH(S1.POP())
+    S1.PUSH(x)
+    while EMPTY(S2) == False do
+        S1.PUSH(S2.POP())
+}
+
+DEQUEUE(ref Q: Queue): ElementType
+{
+    return S1.POP()
+}

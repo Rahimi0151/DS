@@ -1,0 +1,23 @@
+A: Using Queue
+
+REVERSE(ref S: Stack):
+{
+    var Q: Queue
+    while EMPTY(S) == False do
+        ENQUEUE(Q, S.POP())
+    while EMPTY(Q) == False do
+        S.PUSH(DEQUEUE(Q))
+}
+
+B: Using 2 Stacks
+
+REVERSE(ref S: Stack)
+{
+    var S1,S2: Stack
+    while EMPTY(S) == False do
+        S1.PUSH(S.POP())
+    while EMPTY(S1) == False do
+        S2.PUSH(S1.POP())
+    while EMPTY(S2) == False do
+        S.PUSH(S2.POP())
+}

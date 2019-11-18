@@ -1,0 +1,39 @@
+SORT(ref S: Stack)
+{
+    var S1: Stack
+    var Max, Temp: ElementType
+    var Max_Count, Remaining :Integer
+
+    Remaining = 0
+    while EMPTY(S) == False do
+    {
+        S1.PUSH(S.POP())
+        Remaining++
+    }
+    while EMPTY(S1) == False do
+        S.PUSH(S1.POP())
+
+    while Remaining != 0 do
+    {
+        while Remaining != 0 do
+        {
+            Temp = S.POP()
+            if Temp > Max then
+            {
+                Max = Temp
+                Max_Count = 1
+            }
+            S1.PUSH(Temp)
+        }
+
+        for i from 1 to Max_Count do
+            S.PUSH(Max)
+            Remaining--
+
+        while EMPTY(S1) == False do
+        {
+            S.PUSH(S1.POP())
+        }
+    }
+
+}
