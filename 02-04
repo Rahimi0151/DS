@@ -1,0 +1,16 @@
+POWER(a,b: Integer): Integer
+{
+    if b == 1 then 
+        return a
+
+    var x = Integer
+    x = POWER(a,b/2)
+
+    if b mod 2 == 0 then
+        return x*x
+    if b mod 2 == 1 then
+        return x*x*a
+}
+
+T(n) = T(n/2)+1
+=> T(n) = O(logn)
