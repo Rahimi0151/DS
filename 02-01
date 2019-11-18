@@ -1,0 +1,22 @@
+RESTRICTED-HANOI(n,A,B,C: Integer)
+{
+    if n == 1 then
+    {
+        MOVE A->B
+        MOVE B->C
+    }
+    else
+    {
+        RESTRICTED-HANOI(n-1,A,B,C)
+        MOVE A->B
+        RESTRICTED-HANOI(n-1,C,B,A)
+        MOVE B->C
+        RESTRICTED-HANOI(n-1,A,B,C)
+    }
+}
+
+H(n) =  |   2           if  n = 1
+        |   3H(n-1)+2   if  n > 1
+
+=> H(n) = 3 O(2^n) + 2
+=> H(n) = O(2^n)
