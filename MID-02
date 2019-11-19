@@ -1,0 +1,26 @@
+TRANSPOSE(ref M: Linked_Matrix): Linked_Matrix
+{
+    var transpose_node: Linked_Matrix
+    var current_row, original_node, transpose_node: Position
+    current_row = S
+    original_node = S
+    current_column = transpose_node
+
+    if original_node = Null then
+        Return
+
+    while current_row.Down != Null do
+    {
+        original_node = current_row
+        transpose_node = current_column
+        while original_node.Next != Null do
+        {
+            transpose_node.Data = original_node.Data
+            transpose_node = transpose_node.Down
+            original_node = original_node.Next
+        }
+        current_row = current_row.Down
+        current_column = current_column.Next
+    }
+    Return transpose_node
+}

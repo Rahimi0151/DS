@@ -1,0 +1,35 @@
+Solution #1: We are assuming the array doesn't have any duplicated values.
+
+O(logn)
+
+FIND(ref A: Array, min,max: Integer): Integer
+{
+    var mid: Integer
+    mid = (max+min)/2
+    
+    if A[mid] == mid then
+        Return mid
+
+    if A[mid] > mid then
+        Return FIND(A, mid+1, max)
+        
+    if A[mid] < mid then
+        Return FIND(A, min, mid)
+    
+    Return -1
+}
+
+Solution #2: This is not the optimal Solution.
+
+O(n)
+
+FIND(ref A: Array, index=1: Integer): Integer
+{
+    if A[index] == index then
+        Return index
+
+    if index == A.Length() then
+        Return -1
+
+    Return FIND(A, index+1)
+}
