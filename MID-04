@@ -1,0 +1,50 @@
+Type CellType = Record
+{
+    id, Line_Number: Integer
+    Next, Up, current_line: ^CellType
+}
+
+Type ComplexQueue = ^CellType
+
+ENQUEUE(ref CQ: ComplexQueue, N: Integer): Integer
+{
+    var temp_line: ^CellType
+    temp_line = current_line
+
+    while True do
+    {
+        if temp_line.Line_Number == N then
+        {
+            while temp_line.Up != Null do
+                temp_line = temp_line.Up
+
+            var new_person = ^CellType
+            new_person.id = RandomId()
+            temp_line.Up = new_person
+            Return new_person.id
+        } 
+
+        if temp_line.Next.Line_Number > N then
+        {
+            var new_line = ^CellType
+            new_person.Line_Number = N
+            new_person.Next = temp_line.Next
+            temp_line.Next = new_person
+            new_person.id = RandomId()
+            Return new_person.id
+        }
+        temp_line = temp_line.Next
+    }
+}
+
+DEQUEUE(ref CQ: ComplexQueue): Integer
+{
+    current_line.Up.Next = current_line.Next
+    PREV(CQ, current_line).Next = current_line.Up
+ 
+    var temp: Integer
+    temp = current_line.id
+    current_line = current_line.Next
+    DISPOSE(PREV(CQ, current_line))
+    Return temp
+}
