@@ -1,7 +1,14 @@
 Type CellType = Record
 {
-    id, Line_Number: Integer
-    Next, Up, current_line: ^CellType
+    id: Integer
+    Next, Up: ^CellType
+}
+
+Type CQ = Record
+{
+    Line_Number: Integer
+    current_line: ^CellType
+    
 }
 
 Type ComplexQueue = ^CellType
@@ -9,7 +16,7 @@ Type ComplexQueue = ^CellType
 ENQUEUE(ref CQ: ComplexQueue, N: Integer): Integer
 {
     var temp_line: ^CellType
-    temp_line = current_line
+    temp_line = CQ.current_line
 
     while True do
     {
@@ -39,12 +46,12 @@ ENQUEUE(ref CQ: ComplexQueue, N: Integer): Integer
 
 DEQUEUE(ref CQ: ComplexQueue): Integer
 {
-    current_line.Up.Next = current_line.Next
-    PREV(CQ, current_line).Next = current_line.Up
+    CQ.current_line.Up.Next = CQ.current_line.Next
+    PREV(CQ, CQ.current_line).Next = CQ.current_line.Up
  
     var temp: Integer
-    temp = current_line.id
-    current_line = current_line.Next
-    DISPOSE(PREV(CQ, current_line))
+    temp = CQ.current_line.id
+    CQ.current_line = CQ.current_line.Next
+    DISPOSE(PREV(CQ, CQ.current_line))
     Return temp
 }
